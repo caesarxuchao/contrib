@@ -67,6 +67,9 @@ func (o *RepoInfo) Name() string {
 	return RepoFeatureName
 }
 
+func (o *RepoInfo) BaseDir() string {
+	return o.baseDir
+}
 func (o *RepoInfo) walkFunc(path string, info os.FileInfo, err error) error {
 	if err != nil {
 		glog.Errorf("%v", err)
@@ -217,8 +220,7 @@ func (o *RepoInfo) Initialize(config *github.Config) error {
 }
 
 func (o *RepoInfo) cleanUp(path string) error {
-	err := os.RemoveAll(path)
-	return err
+	return os.RemoveAll(path)
 }
 
 func (o *RepoInfo) cloneRepo() (string, error) {

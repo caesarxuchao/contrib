@@ -334,6 +334,7 @@ func (config *Config) PreExecute() error {
 			glog.Fatalf("error reading token file: %v", err)
 		}
 		token = strings.TrimSpace(string(data))
+		config.Token = token
 	}
 
 	// We need to get our Transport/RoundTripper in order based on arguments
