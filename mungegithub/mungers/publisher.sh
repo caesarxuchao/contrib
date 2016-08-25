@@ -46,6 +46,9 @@ git clone "${DSTURL}" "${DST}"
 pushd "${DST}" > /dev/null
 rm -r ./*
 cp -a "${SRC}/." "${DST}"
+# move _vendor/ to vendor/
+find "${DST}" -name "_vendor" -type d -exec mv {} "vendor" \;
+
 git add --all
 # check if there are new contents 
 if git diff --cached --exit-code &>/dev/null; then
